@@ -1,0 +1,2 @@
+# Sensitive legal/tax documents — never commit these
+*.pdf
