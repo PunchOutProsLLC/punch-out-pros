@@ -9,3 +9,11 @@ formation paperwork. The actual PDF documents (articles of organization,
 EIN letter, etc.) are kept locally and excluded from version control via
 `.gitignore`, since they contain sensitive personal and business
 information (EIN, addresses, etc.) that shouldn't be pushed to GitHub.
+
+## Formation checklist
+
+- [x] Articles of organization filed (LLC)
+- [x] EIN obtained from IRS
+- [ ] Operating agreement drafted
+- [ ] Business bank account opened
+
