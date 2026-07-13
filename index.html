@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Punch Out Pro's LLC — Repair Request</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2EFE8;
+    --panel:#FFFFFF;
+    --ink:#1E2124;
+    --ink-soft:#5B5F63;
+    --orange:#E2611F;
+    --orange-dark:#B84A15;
+    --steel:#3E5266;
+    --line:#DBD6C9;
+    --ok:#3E6B4F;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Public Sans', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,.display{
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    font-weight:600;
+    line-height:1.1;
+  }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  a{ color:inherit; }
+  img{max-width:100%;display:block;}
+
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline:2px solid var(--orange-dark);
+    outline-offset:2px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  header{
+    border-bottom:2px solid var(--ink);
+    background:var(--paper);
+  }
+  .header-wrap{
+    max-width:1100px;
+    margin:0 auto;
+    padding:20px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Oswald', sans-serif;
+    font-weight:700;
+    font-size:19px;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+  }
+  .brand .mark{
+    width:30px;height:30px;
+    background:var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .brand .mark svg{ width:18px;height:18px; }
+  .header-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:0.03em;
+  }
+  @media (max-width:640px){ .header-tag{display:none;} }
+
+  main{
+    max-width:1100px;
+    margin:0 auto;
+    padding:56px 28px 80px;
+  }
+
+  .hero{
+    max-width:640px;
+    margin-bottom:48px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--orange-dark);
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    margin-bottom:14px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{ content:"";width:24px;height:1px;background:var(--orange-dark); }
+  .hero h1{ font-size:clamp(32px,4.6vw,48px); margin-bottom:16px; }
+  .hero p{ color:var(--ink-soft); font-size:16.5px; max-width:56ch; }
+
+  .layout{
+    display:grid;
+    grid-template-columns:260px 1fr;
+    gap:40px;
+    align-items:start;
+  }
+  @media (max-width:820px){
+    .layout{ grid-template-columns:1fr; }
+  }
+
+  /* ===== PUNCH LIST SIDEBAR ===== */
+  .punchlist{
+    background:var(--ink);
+    color:var(--paper);
+    padding:26px 22px;
+    position:sticky;
+    top:24px;
+  }
+  @media (max-width:820px){ .punchlist{ position:static; } }
+  .punchlist h2{
+    font-size:15px;
+    letter-spacing:0.08em;
+    margin-bottom:4px;
+  }
+  .punchlist .sub{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:#A8ACA1;
+    margin-bottom:20px;
+  }
+  .punch-item{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    padding:11px 0;
+    border-top:1px solid #383B37;
+    font-size:13.5px;
+  }
+  .punch-item:first-of-type{ border-top:none; }
+  .punch-box{
+    width:16px;height:16px;
+    border:1.5px solid #7A7D74;
+    flex-shrink:0;
+    margin-top:2px;
+    position:relative;
+    transition:background .2s ease, border-color .2s ease;
+  }
+  .punch-item.done .punch-box{
+    background:var(--orange);
+    border-color:var(--orange);
+  }
+  .punch-item.done .punch-box::after{
+    content:"";
+    position:absolute;
+    left:3px; top:-1px;
+    width:5px; height:9px;
+    border:solid var(--ink);
+    border-width:0 2px 2px 0;
+    transform:rotate(45deg);
+  }
+  .punch-item.done{ color:#F2EFE8; }
+  .punch-item:not(.done){ color:#9B9E95; }
+  .punch-progress{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid #383B37;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:#A8ACA1;
+  }
+  .punch-progress b{ color:var(--orange); }
+
+  /* ===== FORM ===== */
+  form{
+    background:var(--panel);
+    border:1px solid var(--line);
+    padding:36px;
+  }
+  @media (max-width:640px){ form{ padding:24px 20px; } }
+
+  fieldset{ border:none; margin-bottom:32px; }
+  fieldset:last-of-type{ margin-bottom:0; }
+  legend{
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    font-size:14px;
+    letter-spacing:0.06em;
+    color:var(--orange-dark);
+    margin-bottom:18px;
+    padding-bottom:8px;
+    border-bottom:1px solid var(--line);
+    width:100%;
+  }
+
+  .field{ margin-bottom:18px; }
+  .field:last-child{ margin-bottom:0; }
+  label{
+    display:block;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  label .opt{
+    font-weight:400;
+    color:var(--ink-soft);
+    text-transform:none;
+    font-size:12px;
+  }
+  input[type="text"], input[type="tel"], input[type="email"], textarea, select{
+    width:100%;
+    padding:12px 13px;
+    border:1.5px solid var(--line);
+    background:var(--paper);
+    font-family:'Public Sans', sans-serif;
+    font-size:15px;
+    color:var(--ink);
+  }
+  input:focus, textarea:focus, select:focus{ border-color:var(--ink); }
+  textarea{ resize:vertical; min-height:90px; }
+
+  .field-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  @media (max-width:560px){ .field-row{ grid-template-columns:1fr; } }
+
+  .upload{
+    border:1.5px dashed var(--line);
+    background:var(--paper);
+    padding:16px;
+  }
+  .upload.has-file{ border-color:var(--ok); }
+  .upload-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:8px;
+  }
+  .upload-name{
+    font-size:13px;
+    font-weight:600;
+  }
+  .upload-hint{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+  }
+  input[type="file"]{
+    width:100%;
+    font-size:13.5px;
+    font-family:'Public Sans', sans-serif;
+  }
+  .file-status{
+    margin-top:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ok);
+    display:none;
+  }
+  .upload.has-file .file-status{ display:block; }
+
+  .uploads-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  @media (max-width:640px){ .uploads-grid{ grid-template-columns:1fr; } }
+
+  /* honeypot */
+  .hp{ position:absolute; left:-9999px; opacity:0; height:0; overflow:hidden; }
+
+  .submit-row{
+    margin-top:32px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:18px;
+    flex-wrap:wrap;
+  }
+  button[type="submit"]{
+    background:var(--ink);
+    color:var(--paper);
+    border:1.5px solid var(--ink);
+    padding:15px 30px;
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+  }
+  button[type="submit"]:hover{ background:var(--orange-dark); border-color:var(--orange-dark); }
+  button[type="submit"]:disabled{ opacity:0.5; cursor:not-allowed; }
+  .submit-note{
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+
+  .form-msg{
+    margin-top:20px;
+    padding:14px 16px;
+    font-size:14px;
+    display:none;
+  }
+  .form-msg.success{
+    display:block;
+    background:#EAF2EC;
+    border:1px solid var(--ok);
+    color:#254733;
+  }
+  .form-msg.error{
+    display:block;
+    background:#FBEAE4;
+    border:1px solid var(--orange-dark);
+    color:#7A2E10;
+  }
+
+  footer{
+    border-top:2px solid var(--ink);
+    padding:24px 28px;
+    max-width:1100px;
+    margin:0 auto;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-wrap">
+    <span class="brand">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F2EFE8" stroke-width="2">
+          <path d="M4 20l6-6M14 4l6 6-4 4-6-6 4-4z"/>
+          <path d="M9 15l1.5 1.5"/>
+        </svg>
+      </span>
+      Punch Out Pro's LLC
+    </span>
+    <a href="tel:+14109896000" class="header-tag mono" style="text-decoration:none;">(410) 989-6000</a>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="eyebrow">Repair request</div>
+    <h1>Send the file. We'll get it to the settlement table.</h1>
+    <p>Attach the property inspection notice and the home inspection report, and we'll reach out to scope the punch list within one business day. No job's too small.</p>
+    <p style="margin-top:14px;">
+      <a href="tel:+14109896000" style="font-family:'Oswald', sans-serif; text-transform:uppercase; font-size:15px; letter-spacing:0.04em; color:#B84A15; text-decoration:none; font-weight:600;">Prefer to call? (410) 989-6000</a>
+    </p>
+  </div>
+
+  <div class="layout">
+    <aside class="punchlist" aria-hidden="false">
+      <h2>Submission checklist</h2>
+      <div class="sub mono">AUTO-UPDATES AS YOU GO</div>
+
+      <div class="punch-item" data-track="submitter_name">
+        <span class="punch-box"></span> Your name
+      </div>
+      <div class="punch-item" data-track="phone">
+        <span class="punch-box"></span> Phone number
+      </div>
+      <div class="punch-item" data-track="email">
+        <span class="punch-box"></span> Email address
+      </div>
+      <div class="punch-item" data-track="inspection_notice">
+        <span class="punch-box"></span> Property inspection notice (PDF)
+      </div>
+      <div class="punch-item" data-track="inspection_report">
+        <span class="punch-box"></span> Home inspection report (PDF)
+      </div>
+
+      <div class="punch-progress"><b id="progressCount">0</b> / 5 complete</div>
+    </aside>
+
+    <form id="referralForm" action="https://formspree.io/f/xrengool" method="POST" enctype="multipart/form-data" novalidate>
+
+      <!-- Honeypot spam trap -->
+      <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off">
+
+      <input type="hidden" name="_subject" value="New repair request — Punch Out Pro's LLC">
+
+      <fieldset>
+        <legend>Your info</legend>
+        <div class="field-row">
+          <div class="field">
+            <label for="submitter_name">Full name</label>
+            <input type="text" id="submitter_name" name="submitter_name" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="phone">Phone number</label>
+            <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="(555) 555-5555">
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="submitter_role">I am the...</label>
+          <select id="submitter_role" name="submitter_role" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="Realtor">Realtor</option>
+            <option value="Homeowner / seller">Homeowner / seller</option>
+            <option value="Buyer">Buyer</option>
+            <option value="Property manager">Property manager</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="property_address">Property address <span class="opt">(optional, helps us scope faster)</span></label>
+          <input type="text" id="property_address" name="property_address" autocomplete="street-address">
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Documents</legend>
+        <div class="uploads-grid">
+          <div class="upload" id="uploadNotice">
+            <div class="upload-top">
+              <span class="upload-name">Property inspection notice</span>
+              <span class="upload-hint">PDF · max 10MB</span>
+            </div>
+            <input type="file" id="inspection_notice" name="inspection_notice" accept="application/pdf" required>
+            <div class="file-status mono">✓ Attached</div>
+          </div>
+          <div class="upload" id="uploadReport">
+            <div class="upload-top">
+              <span class="upload-name">Home inspection report</span>
+              <span class="upload-hint">PDF · max 10MB</span>
+            </div>
+            <input type="file" id="inspection_report" name="inspection_report" accept="application/pdf" required>
+            <div class="file-status mono">✓ Attached</div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Notes <span class="opt">(optional)</span></legend>
+        <div class="field">
+          <textarea id="notes" name="notes" placeholder="Anything we should know before we call — settlement date, access instructions, seller preferences..."></textarea>
+        </div>
+      </fieldset>
+
+      <div class="submit-row">
+        <button type="submit" id="submitBtn">Send referral</button>
+        <span class="submit-note">We'll confirm receipt by email and follow up within one business day.</span>
+      </div>
+
+      <div class="form-msg" id="formMsg" role="status"></div>
+    </form>
+  </div>
+</main>
+
+<footer>
+  <span>&copy; 2026 Punch Out Pro's LLC · Licensed &amp; insured, Maryland</span>
+  <span><a href="tel:+14109896000" style="color:inherit;">(410) 989-6000</a> · Questions? Call us directly instead of using this form.</span>
+</footer>
+
+<script>
+(function(){
+  var trackFields = {
+    submitter_name: document.getElementById('submitter_name'),
+    phone: document.getElementById('phone'),
+    email: document.getElementById('email'),
+    inspection_notice: document.getElementById('inspection_notice'),
+    inspection_report: document.getElementById('inspection_report')
+  };
+
+  var progressCount = document.getElementById('progressCount');
+
+  function updateChecklist(){
+    var done = 0;
+    Object.keys(trackFields).forEach(function(key){
+      var el = trackFields[key];
+      var item = document.querySelector('.punch-item[data-track="' + key + '"]');
+      var filled = el.type === 'file' ? el.files && el.files.length > 0 : el.value.trim().length > 0;
+      item.classList.toggle('done', filled);
+      if (filled) done++;
+    });
+    progressCount.textContent = done;
+  }
+
+  Object.values(trackFields).forEach(function(el){
+    el.addEventListener('input', updateChecklist);
+    el.addEventListener('change', updateChecklist);
+  });
+
+  // File upload visual state + size guard
+  function wireUpload(inputId, wrapId, maxMB){
+    var input = document.getElementById(inputId);
+    var wrap = document.getElementById(wrapId);
+    input.addEventListener('change', function(){
+      if (input.files && input.files.length){
+        var sizeMB = input.files[0].size / (1024*1024);
+        if (sizeMB > maxMB){
+          alert('That file is ' + sizeMB.toFixed(1) + 'MB. Please attach a PDF under ' + maxMB + 'MB.');
+          input.value = '';
+          wrap.classList.remove('has-file');
+          updateChecklist();
+          return;
+        }
+        wrap.classList.add('has-file');
+      } else {
+        wrap.classList.remove('has-file');
+      }
+      updateChecklist();
+    });
+  }
+  wireUpload('inspection_notice', 'uploadNotice', 10);
+  wireUpload('inspection_report', 'uploadReport', 10);
+
+  // AJAX submit to Formspree
+  var form = document.getElementById('referralForm');
+  var submitBtn = document.getElementById('submitBtn');
+  var msg = document.getElementById('formMsg');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    msg.className = 'form-msg';
+    msg.textContent = '';
+
+    if (!form.checkValidity()){
+      form.reportValidity();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    var data = new FormData(form);
+
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(function(response){
+      if (response.ok){
+        msg.className = 'form-msg success';
+        msg.textContent = 'Referral sent. We\'ll be in touch within one business day.';
+        form.reset();
+        updateChecklist();
+        document.querySelectorAll('.upload').forEach(function(u){ u.classList.remove('has-file'); });
+      } else {
+        return response.json().then(function(data){
+          throw new Error((data && data.error) || 'Something went wrong.');
+        });
+      }
+    }).catch(function(err){
+      msg.className = 'form-msg error';
+      msg.textContent = 'Could not send the form (' + err.message + '). Please try again or call us directly.';
+    }).finally(function(){
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send referral';
+    });
+  });
+
+  updateChecklist();
+})();
+</script>
+
+</body>
+</html>
