@@ -56,14 +56,7 @@
     border-bottom:2px solid var(--ink);
     background:var(--paper);
   }
-  .header-wrap{
-    max-width:1100px;
-    margin:0 auto;
-    padding:20px 28px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-  }
+  .header-wrap{ max-width:1100px; margin:0 auto; padding:14px 28px; display:flex; align-items:center; justify-content:space-between; }
   .brand{
     display:flex;
     align-items:center;
@@ -81,12 +74,7 @@
     flex-shrink:0;
   }
   .brand .mark svg{ width:18px;height:18px; }
-  .header-tag{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12px;
-    color:var(--ink-soft);
-    letter-spacing:0.03em;
-  }
+  .header-tag{ font-family:'IBM Plex Mono', monospace; font-size:24px; font-weight:600; color:var(--ink-soft); letter-spacing:0.02em; }
   @media (max-width:640px){ .header-tag{display:none;} }
   main{
     max-width:1100px;
@@ -332,7 +320,7 @@
 <header>
   <div class="header-wrap">
     <a href="/" class="brand" style="text-decoration:none;">
-      <img src="logo.png" alt="Punch Out Pros LLC" style="height:48px;width:auto;display:block;">
+      <img src="logo.png" alt="Punch Out Pros LLC" style="width:260px;height:auto;display:block;">
 </a>
     <a href="tel:+14109896000" class="header-tag mono" style="text-decoration:none;">(410) 989-6000</a>
   </div>
@@ -428,7 +416,7 @@
         </div>
       </fieldset>
       <div class="submit-row">
-        <button type="submit" id="submitBtn">Send referral</button>
+        <button type="submit" id="submitBtn">Submit</button>
         <span class="submit-note">We will confirm receipt by email and follow up within one business day.</span>
       </div>
       <div class="form-msg" id="formMsg" role="status"></div>
@@ -437,7 +425,7 @@
 </main>
 <footer>
   <span>&copy; 2026 Punch Out Pros LLC · Licensed &amp; insured, Maryland</span>
-  <span><a href="tel:+14109896000" style="color:inherit;">(410) 989-6000</a> · Questions? Call us directly instead of using this form.</span>
+  <span><a href="tel:+14109896000" style="color:inherit;">(410) 989-6000</a> · <a href="mailto:info@punchoutprosllc.com" style="color:inherit;">info@punchoutprosllc.com</a> · Questions? Call or email us directly instead of using this form.</span>
 </footer>
 <script>
 (function(){
@@ -509,7 +497,7 @@
     }).then(function(response){
       if (response.ok){
         msg.className = 'form-msg success';
-        msg.textContent = 'Referral sent. We will be in touch within one business day.';
+        msg.textContent = 'Thanks!! We will be in touch within one business day.';
         form.reset();
         updateChecklist();
         document.querySelectorAll('.upload').forEach(function(u){ u.classList.remove('has-file'); });
@@ -523,7 +511,7 @@
       msg.textContent = 'Could not send the form (' + err.message + '). Please try again or call us directly.';
     }).finally(function(){
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Send referral';
+      submitBtn.textContent = 'Submit';
     });
   });
   updateChecklist();
