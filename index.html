@@ -14,7 +14,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D4A72C' stroke-width='2'%3E%3Crect width='24' height='24' fill='%2314233D'/%3E%3Cpath d='M4 20l6-6M14 4l6 6-4 4-6-6 4-4z'/%3E%3Cpath d='M9 15l1.5 1.5'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#F2EFE8;
@@ -36,13 +36,12 @@
     -webkit-font-smoothing:antialiased;
   }
   h1,h2,.display{
-    font-family:'Oswald', sans-serif;
-    text-transform:uppercase;
+    font-family:'Playfair Display', serif;
     letter-spacing:0.01em;
-    font-weight:600;
-    line-height:1.1;
+    font-weight:700;
+    line-height:1.15;
   }
-  .mono{ font-family:'IBM Plex Mono', monospace; }
+  .mono{ font-family:'Public Sans', sans-serif; }
   a{ color:inherit; }
   img{max-width:100%;display:block;}
   a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
@@ -74,16 +73,24 @@
     flex-shrink:0;
   }
   .brand .mark svg{ width:18px;height:18px; }
-  .header-tag{ font-family:'IBM Plex Mono', monospace; font-size:24px; font-weight:600; color:var(--ink-soft); letter-spacing:0.02em; }
+  .header-tag{ font-family:'Public Sans', sans-serif; font-size:24px; font-weight:600; color:var(--ink-soft); letter-spacing:0.02em; }
   @media (max-width:640px){ .header-tag{display:none;} }
   main{
     max-width:1100px;
     margin:0 auto;
-    padding:56px 28px 80px;
+    padding:64px 28px 96px;
   }
-  .hero{ max-width:640px; margin-bottom:48px; } .services{ max-width:640px; margin-bottom:48px; } .services h2{ font-size:22px; margin-bottom:14px; } .services p{ color:var(--ink-soft); font-size:16px; margin-bottom:10px; max-width:60ch; } .services p:last-child{ margin-bottom:0; }
+  .hero{ max-width:640px; margin-bottom:28px; } .services{ max-width:640px; margin-bottom:64px; } .services h2{ font-size:26px; margin-bottom:16px; } .services p{ color:var(--ink-soft); font-size:16px; margin-bottom:12px; max-width:60ch; } .services p:last-child{ margin-bottom:0; }
+  .credentials{ max-width:640px; margin-bottom:56px; padding-top:18px; border-top:1px solid var(--line); font-size:13px; color:var(--ink-soft); letter-spacing:0.02em; }
+  .hero-actions{ display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin-top:30px; }
+  .cta-btn{ display:inline-block; background:var(--ink); color:var(--paper); border:1.5px solid var(--ink); padding:15px 32px; font-family:'Public Sans', sans-serif; text-transform:uppercase; letter-spacing:0.05em; font-size:14px; font-weight:600; text-decoration:none; }
+  .cta-btn:hover{ background:var(--orange-dark); border-color:var(--orange-dark); }
+  .hero-call{ font-size:14.5px; color:var(--ink-soft); }
+  .services-note{ font-size:13.5px; color:var(--ink-soft); font-style:italic; margin-top:4px; }
+  .closing{ max-width:640px; margin-bottom:56px; padding-top:40px; border-top:1px solid var(--line); }
+  .closing h2{ font-size:26px; margin-bottom:22px; }
   .eyebrow{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:'Public Sans', sans-serif;
     font-size:12.5px;
     color:var(--orange-dark);
     text-transform:uppercase;
@@ -92,7 +99,7 @@
     display:flex;align-items:center;gap:10px;
   }
   .eyebrow::before{ content:"";width:24px;height:1px;background:var(--orange-dark); }
-  .hero h1{ font-size:clamp(32px,4.6vw,48px); margin-bottom:16px; }
+  .hero h1{ font-size:clamp(32px,4.6vw,50px); margin-bottom:20px; }
   .hero p{ color:var(--ink-soft); font-size:16.5px; max-width:56ch; }
   .layout{
     display:grid;
@@ -118,7 +125,7 @@
     margin-bottom:4px;
   }
   .punchlist .sub{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:'Public Sans', sans-serif;
     font-size:11.5px;
     color:#A8ACA1;
     margin-bottom:20px;
@@ -159,7 +166,7 @@
     margin-top:20px;
     padding-top:16px;
     border-top:1px solid #383B37;
-    font-family:'IBM Plex Mono', monospace;
+    font-family:'Public Sans', sans-serif;
     font-size:12px;
     color:#A8ACA1;
   }
@@ -174,7 +181,7 @@
   fieldset{ border:none; margin-bottom:32px; }
   fieldset:last-of-type{ margin-bottom:0; }
   legend{
-    font-family:'Oswald', sans-serif;
+    font-family:'Public Sans', sans-serif;
     text-transform:uppercase;
     font-size:14px;
     letter-spacing:0.06em;
@@ -232,7 +239,7 @@
     font-weight:600;
   }
   .upload-hint{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:'Public Sans', sans-serif;
     font-size:11px;
     color:var(--ink-soft);
   }
@@ -243,7 +250,7 @@
   }
   .file-status{
     margin-top:8px;
-    font-family:'IBM Plex Mono', monospace;
+    font-family:'Public Sans', sans-serif;
     font-size:12px;
     color:var(--ok);
     display:none;
@@ -271,7 +278,7 @@
     color:var(--paper);
     border:1.5px solid var(--ink);
     padding:15px 30px;
-    font-family:'Oswald', sans-serif;
+    font-family:'Public Sans', sans-serif;
     text-transform:uppercase;
     letter-spacing:0.05em;
     font-size:14px;
@@ -328,9 +335,16 @@
 <main>
   <div class="hero">
     <div class="eyebrow">Repair request</div>
-    <h1>Selling in today's buyer's market is hard enough — let Punch Out Pros handle the punch list.</h1>
-    <p>We manage every contractor and handyman on the job, so realtors and clients can focus on what's next.</p><p>We guarantee all work is completed well before closing — no delays, no surprises.</p><p>From electrical and plumbing to landscaping and roofing, we're a one-stop shop for every trade, top to bottom of the property. Efficient, reliable, and easy to work with — simply fill out the form today and let us do the work.</p>
-    </div><section class="services" aria-label="Our services"><h2>Our Services</h2><p>All interior and exterior repairs and everything in between — if it's part of the property, we handle it.</p><p>We will also manage and maintain the property until closing, keeping it show-ready the whole time.</p></section>
+    <h1>Selling in today's market is hard enough. Let us handle the punch list.</h1>
+    <p>We manage every contractor and handyman on the job, so you can focus on what's next — with all work guaranteed complete well before closing.</p>
+    <div class="hero-actions">
+      <a href="#referralForm" class="cta-btn">Request a Quote</a>
+      <span class="hero-call">or call <a href="tel:+14109896000" style="color:inherit;">(410) 989-6000</a></span>
+    </div>
+    </div>
+    <div class="credentials">Work performed by MHIC-licensed, insured Maryland trade partners · Statewide · No delays, no surprises</div>
+    <section class="services" aria-label="Our services"><h2>One stop shop, top to bottom of the property.</h2><p>Electrical, plumbing, landscaping, roofing — all interior and exterior repairs, and everything in between. If it's part of the property, we handle it, and we manage every trade so you don't have to.</p><p>We'll also maintain the property until closing, keeping it show-ready the whole time.</p><p class="services-note">Ask us about creative payment arrangements on the HUD.</p></section>
+    <section class="closing" aria-label="Get started"><h2>Fill out the form. Let us do the work.</h2><a href="#referralForm" class="cta-btn">Request a Quote</a></section>
   <div class="layout">
     <aside class="punchlist" aria-label="Submission checklist progress">
       <h2>Submission checklist</h2>
@@ -424,8 +438,8 @@
   </div>
 </main>
 <footer>
-  <span>&copy; 2026 Punch Out Pros LLC · Licensed &amp; insured, Maryland</span>
-  <span><a href="tel:+14109896000" style="color:inherit;">(410) 989-6000</a> · <a href="mailto:info@punchoutprosllc.com" style="color:inherit;">info@punchoutprosllc.com</a> · Questions? Call or email us directly instead of using this form.</span>
+  <span>Work performed by licensed &amp; insured Maryland trade partners</span>
+  <span>&copy; 2026 Punch Out Pros LLC · <a href="tel:+14109896000" style="color:inherit;">(410) 989-6000</a></span>
 </footer>
 <script>
 (function(){
