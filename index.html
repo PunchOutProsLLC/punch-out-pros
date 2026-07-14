@@ -55,7 +55,7 @@
     border-bottom:2px solid var(--ink);
     background:var(--paper);
   }
-  .header-wrap{ max-width:1100px; margin:0 auto; padding:14px 28px; display:flex; align-items:center; justify-content:space-between; }
+  .header-wrap{ max-width:1100px; margin:0 auto; padding:14px 28px; display:flex; align-items:center; justify-content:space-between; gap:28px; }
   .brand{
     display:flex;
     align-items:center;
@@ -65,6 +65,8 @@
     font-size:19px;
     text-transform:uppercase;
     letter-spacing:0.03em;
+    flex:1 1 auto;
+    min-width:0;
   }
   .brand .mark{
     width:30px;height:30px;
@@ -73,7 +75,7 @@
     flex-shrink:0;
   }
   .brand .mark svg{ width:18px;height:18px; }
-  .header-tag{ font-family:'Public Sans', sans-serif; font-size:24px; font-weight:600; color:var(--ink-soft); letter-spacing:0.02em; }
+  .header-tag{ font-family:'Public Sans', sans-serif; font-size:24px; font-weight:600; color:var(--ink-soft); letter-spacing:0.02em; flex-shrink:0; }
   @media (max-width:640px){ .header-tag{display:none;} }
   main{
     max-width:1100px;
@@ -327,7 +329,7 @@
 <header>
   <div class="header-wrap">
     <a href="/" class="brand" style="text-decoration:none;">
-      <img src="logo.png" alt="Punch Out Pros LLC" style="width:260px;height:auto;display:block;">
+      <img src="logo.png" alt="Punch Out Pros LLC" style="width:100%;max-width:560px;height:auto;display:block;">
 </a>
     <a href="tel:+14109896000" class="header-tag mono" style="text-decoration:none;">(410) 989-6000</a>
   </div>
